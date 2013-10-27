@@ -6,12 +6,8 @@ A Grid-System for the LessCSS preprocessor with multiple options that other syst
 How to use
 ----
 ### 1. Setting it up
-1. Simply drop the grid.less file to your other less-Files
-2. Import it in your less-Stylesheet that will get compiled: 
-
-``` css 
-@import "grid"; 
-```
+1. Simply drop the grid.less file to your other less-Files.
+2. Import it in your less-Stylesheet that will get compiled.
 3. Apply the functions on your elements!
 
 ### 2. Rows
