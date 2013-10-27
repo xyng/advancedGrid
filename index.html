@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>advancedGrid by xyng</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>advancedGrid</h1>
+        <h2>A Grid-System for the LessCSS preprocessor with multiple options that other systems lack of.</h2>
+        <a href="https://github.com/xyng/advancedGrid" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="advancedgrid" class="anchor" href="#advancedgrid"><span class="octicon octicon-link"></span></a>advancedGrid</h1>
+
+<p>A Grid-System for the LessCSS preprocessor with multiple options that other systems lack of.</p>
+
+<hr><h2>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<h3>
+<a name="1-setting-it-up" class="anchor" href="#1-setting-it-up"><span class="octicon octicon-link"></span></a>1. Setting it up</h3>
+
+<ol>
+<li>Simply drop the grid.less file to your other less-Files</li>
+<li>Import it in your less-Stylesheet that will get compiled: </li>
+</ol><div class="highlight highlight-css"><pre><span class="k">@import</span> <span class="s2">"grid"</span><span class="p">;</span> 
+</pre></div>
+
+<ol>
+<li>Apply the functions on your elements!</li>
+</ol><h3>
+<a name="2-rows" class="anchor" href="#2-rows"><span class="octicon octicon-link"></span></a>2. Rows</h3>
+
+<p>You will want to choose a row when building a wrapper element that is not floated.
+For Example: The container of your website should be a row since it does not require to be floated. Furthermore there is a clearfix applied on it to prevent floatet elements (likely children of the row) from unwanted behaviour. The Clearfix used is the <a href="http://nicolasgallagher.com/micro-clearfix-hack/">Micro-Clearfix by Nicolas Gallagher</a>.</p>
+
+<p>Its basic syntax is: </p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.row</span><span class="o">(</span><span class="nt">usedColumns</span><span class="o">,</span><span class="nt">ColumnsInTotal</span><span class="o">,</span><span class="nt">totalMarginInPercent</span><span class="o">);</span>
+</pre></div>
+
+<p><strong>Note: the margin will default to 2%, which means 1% to each side. The Columns in total will default to 12.</strong></p>
+
+<h4>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples:</h4>
+
+<p>If your container would have its id set to  "container" like </p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p>You have to do the following in your less-File:</p>
+
+<div class="highlight highlight-css"><pre><span class="nf">#container</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="m">12</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Since this grid consists of 12 columns per default, your container will be styled to have a width of 98% and a margin of 1% to each, left and right.
+If you want the element to have other proportions you can set the other - optional - parameters.</p>
+
+<div class="highlight highlight-css"><pre><span class="nf">#container</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="m">3</span><span class="o">,</span><span class="m">12</span><span class="o">,</span><span class="m">0</span><span class="p">)</span>
+<span class="p">}</span> 
+</pre></div>
+
+<p>This will give the element a width of 40% an no margin.</p>
+
+<h3>
+<a name="3-column" class="anchor" href="#3-column"><span class="octicon octicon-link"></span></a>3. Column</h3>
+
+<p>You will want to use the column function when setting widths of Elements that need to be floated. For example if you want to add a Sidebar, or even two on your page.</p>
+
+<p>Its basic syntax is: </p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.column</span><span class="o">(</span><span class="nt">usedColumns</span><span class="o">,</span><span class="nt">ColumnsInTotal</span><span class="o">,</span><span class="nt">floatDirection</span><span class="o">,</span><span class="nt">totalMarginInPercent</span><span class="o">);</span> 
+</pre></div>
+
+<p>Again, only the first value is required. All the others are optional.</p>
+
+<p><strong>Note: the margin will default to 2%, which means 1% to each side. The Columns in total will default to 12. The floatDirection will default to left.</strong></p>
+
+<h4>
+<a name="examples-1" class="anchor" href="#examples-1"><span class="octicon octicon-link"></span></a>Examples:</h4>
+
+<h5>
+<a name="basic-scenario" class="anchor" href="#basic-scenario"><span class="octicon octicon-link"></span></a>Basic Scenario</h5>
+
+<p>If you want to set up a simple two-Column page, you only need to create two elements.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;sidebar&gt;&lt;/sidebar&gt;</span>
+<span class="nt">&lt;main&gt;&lt;/main&gt;</span>
+</pre></div>
+
+<p>In your CSS-Code you need to do the following, to have a 2-Column-Sidebar and a 10 Column Main-Content</p>
+
+<div class="highlight highlight-css"><pre><span class="nt">sidebar</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nt">main</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>
+<a name="advanced-scenarios" class="anchor" href="#advanced-scenarios"><span class="octicon octicon-link"></span></a>Advanced Scenarios</h5>
+
+<p>If you would like to have a Sidebar that is a quarter of your page and a Content that is three quarters of your page you would do the following in your CSS:</p>
+
+<div class="highlight highlight-css"><pre><span class="nt">sidebar</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="m">1</span><span class="o">,</span><span class="m">4</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nt">main</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="m">3</span><span class="o">,</span><span class="m">4</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>
+<a name="even-more-advanced-scenarios" class="anchor" href="#even-more-advanced-scenarios"><span class="octicon octicon-link"></span></a>Even more Advanced Scenarios</h5>
+
+<p>If you would like to have a Sidebar without any margin that is 2 fifths of the page and a Content that is 3 fifths of the page and floated right you would do the following:</p>
+
+<div class="highlight highlight-css"><pre><span class="nt">sidebar</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="m">2</span><span class="o">,</span><span class="m">5</span><span class="o">,</span><span class="k">left</span><span class="o">,</span><span class="m">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nt">main</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="m">3</span><span class="o">,</span><span class="m">5</span><span class="o">,</span><span class="k">right</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="4-further-functions" class="anchor" href="#4-further-functions"><span class="octicon octicon-link"></span></a>4. Further functions</h3>
+
+<h4>
+<a name="push--pull" class="anchor" href="#push--pull"><span class="octicon octicon-link"></span></a>Push &amp; Pull</h4>
+
+<p>With push and pull you can set a specific margin to either left (push) or right (pull).</p>
+
+<p>The Basic Syntax is: </p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.push</span><span class="o">(</span><span class="nt">columnsUsed</span><span class="o">,</span><span class="nt">columnsInTotal</span><span class="o">);</span> 
+</pre></div>
+
+<p>(pull works exactly the same)</p>
+
+<p><strong>Note: both parameters are optional. columnsUsed will default to one and columnsInTotal will default to 12.</strong></p>
+
+<h5>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h5>
+
+<p>If you want an element to have a margin of 2 eighths to the left, you would do this:</p>
+
+<div class="highlight highlight-css"><pre><span class="nf">#anyElement</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="m">2</span><span class="o">,</span><span class="m">8</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4>
+<a name="width" class="anchor" href="#width"><span class="octicon octicon-link"></span></a>Width</h4>
+
+<p>If you want - for any reason - to reset the width at a later point in your code, you can do this with the width function.
+You do wonder why this is needed? Well, you dont want to rewrite everything the .column-Function sets. Furthermore, the width has to be serverd as !important when overwriting.</p>
+
+<p>Its Basic Syntax is: </p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.width</span><span class="o">(</span><span class="nt">usedColumns</span><span class="o">,</span><span class="nt">ColumnsInTotal</span><span class="o">,</span><span class="nt">totalMarginInPercent</span><span class="o">);</span>
+</pre></div>
+
+<p>You might also wonder why there is a totalMargin set. This is because the margin has to be substrated from the width. And since you can set a custom margin in the column function, you have to be able to do this over here. </p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/xyng/advancedGrid/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/xyng/advancedGrid/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/xyng/advancedGrid"></a> is maintained by <a href="https://github.com/xyng">xyng</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
