@@ -41,7 +41,7 @@ If you want the element to have other proportions you can set the other - option
 	.row(3,12,0)
 } 
 ```
-This will give the element a width of 40% an no margin.
+This will give the element a width of 25% an no margin.
 
 ### 3. Column
 You will want to use the column function when setting widths of Elements that need to be floated. For example if you want to add a Sidebar, or even two on your page.
@@ -96,7 +96,7 @@ sidebar {
 main {
 	.column(3,5,right);
 }
-```	
+```
 ### 4. Further functions
 #### Push & Pull
 With push and pull you can set a specific margin to either left (push) or right (pull).
