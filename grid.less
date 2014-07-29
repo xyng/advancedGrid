@@ -5,11 +5,8 @@
 @margin: 2%;
 @column-size: @total-width / @columns;
 
-.row(@x, @columns:@columns,@margin:@margin) {
-	display: block;
-	width: (@column-size*@x) - @margin;
-	margin: 0 (@margin/2) 0 (@margin/2);
-	// Micro-Clearfix by Nicolas Gallagher - http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfx {
+  // Micro-Clearfix by Nicolas Gallagher - http://nicolasgallagher.com/micro-clearfix-hack/
 	:before,
 	:after {
 	    content: " "; /* 1 */
@@ -19,6 +16,14 @@
 	    clear: both;
 	}
 	*zoom: 1;
+	}
+}
+
+.row(@x, @columns:@columns,@margin:@margin) {
+	display: block;
+	width: (@column-size*@x) - @margin;
+	margin: 0 (@margin/2) 0 (@margin/2);
+	&:extend(.clearfx);
 }
 
 .column(@x, @columns:@columns, @direction: left, @margin:@margin) {
